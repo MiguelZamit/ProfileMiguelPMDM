@@ -24,10 +24,14 @@ import androidx.compose.material.icons.filled.DeveloperMode
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Flight
 import androidx.compose.material.icons.filled.Groups
+import androidx.compose.material.icons.filled.Mail
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.material.icons.filled.PersonRemove
 import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -163,7 +167,6 @@ fun SocialApp(modifier: Modifier) {
 
                 }
 
-
                 var isClicked: Boolean by rememberSaveable { mutableStateOf(false) }
                 Spacer(modifier = Modifier.width(30.dp))
                 Button(
@@ -177,11 +180,28 @@ fun SocialApp(modifier: Modifier) {
 
                 ) {
                     Icon(
-                        imageVector = if (isClicked) Icons.Filled.PersonAdd else Icons.Filled.PersonRemove,
+                        imageVector = if (!isClicked) Icons.Filled.PersonAdd else Icons.Filled.PersonRemove,
                         contentDescription = if (isClicked) "UnFollow" else "Follow",
                         modifier = Modifier
                             .height(30.dp)
-                            .width(30.dp)
+                            .width(30.dp),
+                        tint = Color(0xD0EC853D)
+
+                    )
+                }
+
+                BadgedBox(
+                    badge = {
+                        Badge{
+                            Text(text = "5")
+                        }
+                    },
+                    modifier = Modifier.padding(12.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Mail,
+                        contentDescription = "Mail",
+                        tint = Color(0xD0EC853D)
                     )
                 }
 
@@ -215,10 +235,24 @@ fun SocialApp(modifier: Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-
                 CustomImage(R.drawable.sam_sulek)
                 CustomImage(R.drawable.cbum)
+            }
+
+            Column (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Button(
+                    onClick = {
+
+                    }
+                ) {
+                    Text(
+                        text = "+",
+                        fontSize =20.sp
+                    )
+                }
             }
 
 
