@@ -15,12 +15,11 @@ fun SocialAppContent(content: @Composable (modifier: Modifier) -> Unit){
     ProfileMiguelTheme {
         Scaffold (
             modifier = Modifier
-                .background(Color.Blue) // Esto no funciona
                 .fillMaxSize()
 
         ){ innerPadding ->
             content(Modifier
-                .padding(innerPadding)
+                .padding(innerPadding),
             )
         }
     }

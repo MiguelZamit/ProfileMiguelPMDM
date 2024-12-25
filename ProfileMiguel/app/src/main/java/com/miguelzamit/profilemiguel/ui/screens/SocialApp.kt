@@ -39,6 +39,7 @@ import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -91,6 +92,7 @@ fun CustomImage(image: Int) {
         modifier = Modifier
             .width(280.dp)
             .clip(shape = RoundedCornerShape(20.dp))
+            .border(2.dp, Color(0xD0EC853D), shape = RoundedCornerShape(20.dp))
     )
 
     Column(
@@ -125,6 +127,8 @@ fun CustomImage(image: Int) {
 @Composable
 fun SocialApp(modifier: Modifier) {
 
+    var messages: Int by rememberSaveable { mutableIntStateOf(5)}
+
     Column(
         modifier = modifier,
     ) {
@@ -144,11 +148,6 @@ fun SocialApp(modifier: Modifier) {
                         .height(60.dp)
                         .width(60.dp)
                         .clip(CircleShape)
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = CircleShape
-                        )
                 )
 
                 Column(
@@ -156,10 +155,10 @@ fun SocialApp(modifier: Modifier) {
                 ) {
                     Text(
                         text = "Good Morning",
-                        fontSize = 14.sp
+                        fontSize = 14.sp,
+                        color = Color.Gray
                     )
                     Text(
-
                         text = "Miguel Zamit",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Black
@@ -193,7 +192,7 @@ fun SocialApp(modifier: Modifier) {
                 BadgedBox(
                     badge = {
                         Badge{
-                            Text(text = "5")
+                            Text(text = "$messages")
                         }
                     },
                     modifier = Modifier.padding(12.dp)
@@ -207,50 +206,64 @@ fun SocialApp(modifier: Modifier) {
 
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = "Hobbies",
-                fontWeight = FontWeight.Black
-            )
-
-            Column(
-                modifier = Modifier
-                    .padding(20.dp, 10.dp)
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(5.dp)
-            ) {
-
-                CustomIconRow(Icons.Filled.Groups, "Play with friends")
-                CustomIconRow(Icons.Filled.VideogameAsset, "Play videogames")
-                CustomIconRow(Icons.Filled.Flight, "Travel around the world")
-                CustomIconRow(Icons.Filled.DeveloperMode, "Develop applications")
-                CustomIconRow(Icons.Filled.Celebration, "Go to parties")
-
+            Column (){
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    text = "Hobbies",
+                    fontWeight = FontWeight.Black
+                )
+                Column(
+                    modifier = Modifier
+                        .padding(20.dp, 10.dp)
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(5.dp)
+                ) {
+                    CustomIconRow(Icons.Filled.Groups, "Play with friends")
+                    CustomIconRow(Icons.Filled.VideogameAsset, "Play videogames")
+                    CustomIconRow(Icons.Filled.Flight, "Travel around the world")
+                    CustomIconRow(Icons.Filled.DeveloperMode, "Develop applications")
+                    CustomIconRow(Icons.Filled.Celebration, "Go to parties")
+                }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
-
+            Spacer(modifier = Modifier.height(10.dp))
             Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier
+                    .fillMaxWidth()
+                    ,
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 CustomImage(R.drawable.sam_sulek)
                 CustomImage(R.drawable.cbum)
             }
 
             Column (
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .padding(0.dp, 20.dp)
+                    .clip(shape = RoundedCornerShape(20.dp))
+                    .background(Color(0x2567645F))
+                    ,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Button(
                     onClick = {
-
-                    }
+                        ++messages
+                    },
+                    modifier = Modifier
+                        .padding(8.dp) // Aqui es importante el orden
+                        .width(58.dp)
+                        .height(54.dp)
+                        .border(2.dp, Color(0xD0EC853D), shape = CircleShape)
+                        ,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.White,
+                        contentColor = Color(0xD0EC853D)
+                    ),
                 ) {
                     Text(
                         text = "+",
-                        fontSize =20.sp
+                        fontSize = 20.sp
                     )
                 }
             }
