@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -104,7 +105,7 @@ fun CustomImage(image: Int) {
                 clicked = !clicked
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.White,
+                containerColor = Color(0x038D8780),
                 contentColor = Color.Black
             )
         ) {
@@ -136,7 +137,8 @@ fun SocialApp(modifier: Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 15.dp, vertical = 5.dp)
+                .fillMaxHeight()
+                .padding(horizontal = 15.dp)
         ) {
 
             Row() {
@@ -173,7 +175,7 @@ fun SocialApp(modifier: Modifier) {
                         isClicked = !isClicked
                     },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White,
+                        containerColor = Color(0x038D8780),
                         contentColor = Color.LightGray
                     )
 
@@ -267,7 +269,6 @@ fun SocialApp(modifier: Modifier) {
                     )
                 }
             }
-
 
         }
 
